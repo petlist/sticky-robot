@@ -32,10 +32,10 @@ def pos_grab(num, rate):
     cap.release()
     cv2.destroyAllWindows()
 
-#pos_img_capture(15, 5)
+#pos_grab(15, 5)
 
 ## for commandline use: python3 pos_img_capture.py 5 5
 if __name__ == "__main__":
     import sys
-    pos_img_capture(int(sys.argv[1]), int(sys.argv[2]))
+    pos_grab(int(sys.argv[1]), int(sys.argv[2]))
 

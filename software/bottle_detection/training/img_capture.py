@@ -22,8 +22,9 @@ def foldercheck(mode):
 def grab(mode, num, rate):
     ## mode: pos neg
     ## num: number of images wanted
-    ## rate: every 'rate' image is saved
+    ## rate: every 'rate' seconds a image is saved
     cap=cv2.VideoCapture(0)
+    fps=cap.get(5) #5th option is frames per seconds
     counter=1
     name=0
     
@@ -32,12 +33,12 @@ def grab(mode, num, rate):
         ret, img=cap.read()              
         counter=counter+1
         if mode == 'pos':
-            if (counter%rate==0):
+            if (counter%(fps*rate)==0):
                 name=name+1
                 cv2.imwrite('positives/'+str(name)+'.jpg',img)
                 print('positives/'+str(name)+'.jpg saved')
         if mode == 'neg':
-            if (counter%rate==0):
+            if (counter%(fps*rate)==0): 
                 name=name+1
                 cv2.imwrite('negatives/'+str(name)+'.jpg',img)
                 print('negatives/'+str(name)+'.jpg saved')
