@@ -1,0 +1,14 @@
+import cv2
+import os
+import numpy as np
+
+def create_neg():
+    for img in os.listdir('negatives/'):
+        try:
+            line = 'negatives/'+str(img)+'\n'
+            with open('neg.txt','a') as f:
+                f.write(line)
+        except Exception as e:
+            print(str(e))
+                
+create_neg()

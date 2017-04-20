@@ -1,2 +1,3 @@
 /software/bottle_detection/training/negatives/*
 /software/bottle_detection/training/positives/*
+/software/bottle_detection/training/data/*
