@@ -14,9 +14,9 @@ def foldercheck(mode):
             os.makedirs('negatives')
             print('directory \'negatives\' made')
     if mode=='pos':
-        if not os.path.exists('positives'):
-            os.makedirs('positives')
-            print('directory \'positives\' made')
+        if not os.path.exists('positives_to_process'):
+            os.makedirs('positives_to_process')
+            print('directory \'positives_to_process\' made')
 
 def create_neg():
     for img in os.listdir('negatives/'):
@@ -43,8 +43,8 @@ def grab(mode, num, rate):
         if mode == 'pos':
             if (counter%(fps*rate)==0):
                 name=name+1
-                cv2.imwrite('positives/'+str(name)+'.jpg',img)
-                print('positives/'+str(name)+'.jpg saved')
+                cv2.imwrite('positives_to_process/'+str(name)+'.jpg',img)
+                print('positives_to_process/'+str(name)+'.jpg saved')
         if mode == 'neg':
             if (counter%(fps*rate)==0): 
                 name=name+1

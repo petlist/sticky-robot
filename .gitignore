@@ -1,4 +1,9 @@
+# Bottle Detection
 /software/bottle_detection/training/negatives/*
 /software/bottle_detection/training/positives/*
 /software/bottle_detection/training/data/*
+/software/bottle_detection/__pycache__/
+/software/bottle_detection/training/positives_to_process/*
+
+
 /.idea/*
