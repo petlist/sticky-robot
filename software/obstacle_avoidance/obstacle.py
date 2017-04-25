@@ -1,11 +1,11 @@
 import numpy as np
 
 
-class Bottle:
+class Obstacle:
     def __init__(self, initial, imagesize, name='bottle'):
-        self.bottle = np.array([initial])  # numpy array with detections of the bottle, initial is the first detection
+        self.obstacle = np.array([initial])  # numpy array with detections of the bottle, initial is the first detection
         self.status = True  # can the instance be considered as a bottle or is it an outlier?
-        self.mean = np.rint(np.mean(self.bottle, axis=0))  # mean of bottle detection
+        self.mean = np.rint(np.mean(self.obstacle, axis=0))  # mean of bottle detection
         self.eps = 0.05  # epsilon such that detection is counted as the same bottle
         self.imagesize = np.rint(imagesize)  # image dimensions that are being analyzed: [width, height] or np.array
         self.name = name
@@ -15,20 +15,20 @@ class Bottle:
         return self.status
 
     def get_detections(self):
-        return self.bottle
+        return self.obstacle
 
     def get_mean(self):
-        self.mean = np.rint(np.mean(self.bottle, axis=0))  # update mean
+        self.mean = np.rint(np.mean(self.obstacle, axis=0))  # update mean
         return self.mean
 
     def get_num_det(self):
-        return np.size(self.bottle, axis=0)
+        return np.size(self.obstacle, axis=0)
 
     def get_windowsize(self):
         return self.imagesize
 
     def get_dist(self, detection):
-        dist = np.sqrt(np.sum((self.bottle - detection) ** 2, axis=1))
+        dist = np.sqrt(np.sum((self.obstacle - detection) ** 2, axis=1))
         idx_min = np.argmin(dist)
         min_dist = dist[idx_min]
         return min_dist
@@ -59,7 +59,7 @@ class Bottle:
     def add_detection_manually(self, detection):
         print(detection)
         detection_2d = np.array([detection])  # bring detection into right dimensions
-        self.bottle = np.concatenate((self.bottle, detection_2d), axis=0)
+        self.obstacle = np.concatenate((self.obstacle, detection_2d), axis=0)
         #print(' '.join(['Detection', detection, 'added to', self.name])) doesnt work! because of detection
 
     def add_detection(self, detection):  # actually not needed! check if part of bottle outside class

@@ -5,5 +5,5 @@
 /software/bottle_detection/__pycache__/
 /software/bottle_detection/training/positives_to_process/*
 
-
+# others
 /.idea/*
