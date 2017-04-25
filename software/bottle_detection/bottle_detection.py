@@ -172,4 +172,8 @@ es gmesch.
 
 
 Evtl anstatt zeitfenster, anzahl bilder nehmen! für while loop
+
+Include frequency of detection, since if something is detected constantly we can be quite sure about it to actually be 
+the object we're looking for. If it is only sporadic it might only be a false positive detection and should therefore be
+discarded.
 """
