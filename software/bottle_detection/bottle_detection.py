@@ -24,6 +24,7 @@ def detect(classifier, dtime=10, eps=0.05):
     windowsize = np.array([cap.get(3), cap.get(4)])  # get pixels of frame, e.g. 640x480
 
     while time.time()-start_time < dtime:
+        test_time = time.time()
         ret, img = cap.read()
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # bottles is a vector containing (x,y,w,h) of the detected bottle
@@ -56,15 +57,16 @@ def detect(classifier, dtime=10, eps=0.05):
                     cv2.putText(img, bottle_list[-1].get_name(), (x, int(y-0.03*windowsize[1])), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 0, 255))
                     print('Bottle added')
 
-
             # drawing on image:
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 255), 3)
 
+        # print('time for 1 iteration: ', test_time - time.time())
         cv2.imshow('Bottle Detection', img)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             print('quit successfully')
             break
+
     cap.release()
     cv2.destroyAllWindows()
     return bottle_list
@@ -136,6 +138,7 @@ def validate(bottle_list): # threshold=0.05
     """
     return return_list
 
+start_time = time.time()
 
 list_of_bottle_detections = detect('classifiers/haarcascade_frontalface_default.xml', 20, 0.01)
 
@@ -157,6 +160,7 @@ for i in range(len(list_of_bottles)):
 print('The final results in degrees are:')
 
 print(results)
+
 
 """
 In the moment the pixels are counted from top left! but should be bottom right! 
